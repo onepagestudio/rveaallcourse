@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" contenteditable="false"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RVEA 學習路徑｜從入門到接單，一條走得通的路</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEE2D4;
+    --bg-alt:#D8C7B5;
+    --border:#B19E90;
+    --ink:#2B2015;
+    --step1:#471D1F;   /* 28問 · 觀念先行 */
+    --step2:#4B3620;   /* 進階班 · 技術扎根 */
+    --step3:#5C3A56;   /* 靈感研究室 · 持續創作 */
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    background-image:
+      repeating-linear-gradient(93deg, transparent, transparent 2px, rgba(140,128,100,0.032) 2px, rgba(140,128,100,0.032) 3px),
+      repeating-linear-gradient(2deg, transparent, transparent 3px, rgba(140,128,100,0.022) 3px, rgba(140,128,100,0.022) 4px);
+    color:var(--ink);
+    font-family:'DM Sans','Noto Sans TC',sans-serif;
+    font-weight:400;
+    font-size:13px;
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+  .grain{position:fixed; inset:0; z-index:999; pointer-events:none; opacity:0.045; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  .wrap{max-width:1040px; margin:0 auto; padding:0 32px;}
+  section{position:relative; overflow:hidden;}
+  .watermark{
+    position:absolute; font-family:'Cormorant Garamond',serif; font-weight:300; font-style:italic;
+    color:rgba(43,32,21,0.045); white-space:nowrap; pointer-events:none; z-index:0; user-select:none; line-height:1;
+  }
+  .eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:400; font-size:14px;
+    letter-spacing:2px; color:var(--step2); margin-bottom:10px;
+  }
+  .eyebrow::before{content:""; width:26px; height:1px; background:var(--step2); opacity:0.6;}
+  h1,h2,h3{font-family:'Noto Serif TC',serif; font-weight:900; letter-spacing:-0.4px; line-height:1.12; color:var(--ink);}
+  h2{font-size:30px; margin-bottom:6px;}
+  a{color:inherit; text-decoration:none;}
+  .section-head{position:relative; z-index:1; max-width:640px; margin-bottom:44px;}
+  .section-head .rule{width:44px; height:2px; background:var(--step2); margin-top:16px; opacity:0.55;}
+  .section-head p.desc{margin-top:16px; font-size:14px; color:var(--ink); opacity:0.78; line-height:1.85;}
+
+  /* ---------- NAV ---------- */
+  header.nav{position:sticky; top:0; z-index:200; background:rgba(238,226,212,0.9); backdrop-filter:blur(6px); border-bottom:1px solid rgba(177,158,144,0.5);}
+  .nav-inner{max-width:1040px; margin:0 auto; padding:16px 32px; display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:'Noto Serif TC',serif; font-weight:900; font-size:19px; letter-spacing:1.2px; color:var(--step2);}
+  .logo span{font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:400; font-size:14px; letter-spacing:0.5px; opacity:0.7; margin-left:8px;}
+  .nav-right{display:flex; align-items:center; gap:10px;}
+  .nav-cta{display:flex; align-items:center; height:38px; border:1px solid var(--step2); color:var(--step2); padding:0 20px; border-radius:2px; font-size:12.5px; letter-spacing:1px; transition:all .25s ease; white-space:nowrap;}
+  .nav-cta:hover{background:var(--step2); color:var(--bg);}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:150px 0 130px; border-bottom:1px solid var(--border); text-align:center;}
+  .hero .watermark{top:-6%; left:50%; transform:translateX(-50%); font-size:min(48vw,520px);}
+  .hero-inner{position:relative; z-index:1; max-width:640px; margin:0 auto;}
+  .hero .eyebrow{justify-content:center;}
+  .hero h1{font-size:clamp(30px,4.4vw,44px); margin:14px 0 20px;}
+  .hero-copy{max-width:520px; margin:0 auto 40px; font-size:14px; line-height:1.85; opacity:0.82;}
+  .hero-copy div{margin-top:6px;}
+  .cta-row{justify-content:center;}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn-primary,.btn-ghost{padding:14px 30px; font-size:13px; letter-spacing:1.2px; border-radius:2px; font-family:'Noto Sans TC',sans-serif; font-weight:500; transition:all .25s ease; display:inline-block; text-decoration:none;}
+  .btn-primary{background:var(--step2); color:var(--bg);}
+  .btn-primary:hover{background:var(--ink);}
+  .btn-ghost{border:1px solid var(--step2); color:var(--step2);}
+  .btn-ghost:hover{background:rgba(75,54,32,0.06);}
+
+  /* ---------- WHY / BRIDGE ---------- */
+  .why{padding:80px 0; background:var(--bg-alt); border-bottom:1px solid var(--border);}
+  .why .wrap{position:relative; z-index:1; max-width:720px;}
+  .why p{font-size:14.5px; line-height:1.95; margin-bottom:16px; opacity:0.9;}
+  .why p div{margin-top:4px;}
+  .why strong{color:var(--step2);}
+
+  /* ---------- PATH (signature) ---------- */
+  .path-section{padding:104px 0 96px;}
+  .path-section .watermark{top:0; right:-30px; font-size:150px;}
+  .path-map{position:relative; z-index:1;}
+  .path-track{position:relative; display:flex; flex-direction:column; gap:0;}
+  .path-track::before{
+    content:""; position:absolute; top:26px; bottom:26px; left:27px; width:1px;
+    background:repeating-linear-gradient(to bottom, var(--border) 0 6px, transparent 6px 12px);
+  }
+  .path-stop{position:relative; padding:0 0 56px 76px;}
+  .path-stop:last-child{padding-bottom:0;}
+  .path-dot{
+    position:absolute; left:0; top:0; width:56px; height:56px; border-radius:50%;
+    background:var(--bg); border:1.5px solid var(--stop-color, var(--step2));
+    display:flex; align-items:center; justify-content:center; z-index:2;
+  }
+  .path-dot span{font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:500; font-size:22px; color:var(--stop-color, var(--step2));}
+  .path-card{
+    background:rgba(255,255,255,0.4); border:1px solid var(--border); border-left:3px solid var(--stop-color, var(--step2));
+    padding:28px 30px; max-width:660px;
+  }
+  .path-tag{
+    display:inline-flex; align-items:center; gap:8px; font-family:'DM Sans',sans-serif; font-weight:700;
+    font-size:10.5px; letter-spacing:1.5px; color:var(--stop-color, var(--step2)); text-transform:uppercase; margin-bottom:10px;
+  }
+  .path-card h3{font-size:21px; margin-bottom:4px;}
+  .path-card .sub{font-family:'Cormorant Garamond',serif; font-style:italic; font-size:13.5px; color:var(--stop-color, var(--step2)); margin-bottom:14px; opacity:0.9;}
+  .path-card .desc{font-size:13.5px; line-height:1.85; opacity:0.85; margin-bottom:16px;}
+  .path-facts{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px;}
+  .path-facts span{border:1px solid var(--border); border-radius:20px; padding:5px 13px; font-size:11px; letter-spacing:0.3px; background:rgba(255,255,255,0.5);}
+  .path-fit{font-size:12.5px; opacity:0.7; margin-bottom:18px;}
+  .path-fit b{opacity:1; color:var(--stop-color, var(--step2));}
+  .path-link{display:inline-flex; align-items:center; gap:8px; font-size:12.5px; font-weight:700; letter-spacing:0.5px; color:var(--stop-color, var(--step2)); border-bottom:1px solid var(--stop-color, var(--step2)); padding-bottom:2px; text-decoration:none;}
+  .path-link:hover{opacity:0.7;}
+
+  /* ---------- SELF CHECK ---------- */
+  .check{padding:88px 0; background:var(--bg-alt); border-top:1px solid var(--border); border-bottom:1px solid var(--border);}
+  .check .watermark{bottom:-20px; left:-20px; font-size:150px;}
+  .check-grid{position:relative; z-index:1; display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border);}
+  .check-card{background:var(--bg); padding:30px 26px; display:flex; flex-direction:column; gap:12px;}
+  .check-card .q{font-family:'Cormorant Garamond',serif; font-style:italic; font-size:13px; color:var(--step2); opacity:0.8;}
+  .check-card p{font-size:13.5px; line-height:1.75; opacity:0.88; flex:1;}
+  .check-card .go{font-size:12px; font-weight:700; letter-spacing:0.4px; text-decoration:underline; text-underline-offset:3px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:70px 0 46px;}
+  footer .watermark{bottom:-24px; right:-10px; font-size:150px;}
+  .footer-inner{position:relative; z-index:1; text-align:center;}
+  .footer-tag{font-family:'Cormorant Garamond',serif; font-style:italic; font-size:13px; color:var(--step2); opacity:0.75; margin-bottom:10px;}
+  footer h2{font-size:24px; margin-bottom:26px;}
+  .footer-social{display:flex; justify-content:center; gap:16px; margin-bottom:26px;}
+  .footer-icon{width:48px; height:48px; border:1px solid var(--border); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--step2); background:rgba(255,255,255,0.35); transition:all .25s ease; box-shadow:0 1px 0 rgba(43,32,21,0.04);}
+  .footer-icon svg{width:20px; height:20px; fill:currentColor; transition:fill .25s ease;}
+  .footer-icon.line-icon:hover{background:#06C755; border-color:#06C755; color:#fff;}
+  .footer-icon.ig-icon:hover{background:linear-gradient(135deg,#4f5bd5,#962fbf,#d62976,#fa7e1e,#feda75); border-color:transparent; color:#fff;}
+  .footer-meta{font-size:11.5px; opacity:0.6; letter-spacing:0.3px;}
+
+  @media(max-width:860px){
+    .hero{padding:100px 0 80px;}
+    .check-grid{grid-template-columns:1fr;}
+    .path-card{padding:22px 20px;}
+    .path-stop{padding-left:64px;}
+    .path-dot{width:46px; height:46px;}
+    .watermark{font-size:90px !important;}
+  }
+</style>
+</head>
+<body contenteditable="false">
+<div class="grain"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo">RVEA <span>· 學習路徑</span></div>
+    <div class="nav-right">
+      <a class="nav-cta" href="https://line.me/R/ti/p/@998uuoof" target="_blank" rel="noopener">歡迎詢問</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <span class="watermark">徑</span>
+  <div class="wrap">
+    <div class="hero-inner">
+      <span class="eyebrow">THREE STAGES, ONE PATH</span>
+      <h1>從第一次接單，<br>到建立自己的創作風格</h1>
+      <p class="hero-copy">三堂課，分別解決創作者在不同階段會卡住的問題：<br>如何開始接單、怎麼做出精緻服貼的穿戴甲、怎麼做出自己風格的設計。<br>你可以從任何一站開始。</p>
+      <div class="cta-row">
+        <a class="btn-primary" href="#check">找到適合我的階段</a>
+        <a class="btn-ghost" href="#path">看完整路徑</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY / BRIDGE ============ -->
+<section class="why">
+  <div class="wrap">
+    <p><strong>觀念、技術、創作，是三件不同的事，也是三個容易卡關的地方：</strong><br>有人做得出漂亮的款式，卻在接單第一天就被定價和售後問題打亂陣腳；<br>有人技術扎實，卻始終跳不出「一直收藏參考圖」的迴圈，做不出自己的風格。</p>
+    <p>這條路徑是幫你先看清楚：自己現在卡在哪一站，下一步該往哪裡走。</p>
+  </div>
+</section>
+
+<!-- ============ PATH（簽名視覺：學習地圖） ============ -->
+<section class="path-section" id="path">
+  <span class="watermark">THE MAP</span>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">THE MAP · 學習地圖</span>
+      <h2>三個階段，缺一個都走不遠</h2>
+      <div class="rule"></div>
+      <p class="desc">每一站都可以獨立完成，但順序是刻意設計過的——後面的階段，都建立在前一站打好的基礎上。</p>
+    </div>
+
+    <div class="path-map">
+      <div class="path-track">
+
+        <!-- STEP 01 -->
+        <div class="path-stop" style="--stop-color:var(--step1);">
+          <div class="path-dot"><span>01</span></div>
+          <div class="path-card">
+            <span class="path-tag">STEP 01 · 觀念先行</span>
+            <h3>穿戴甲接單前必修的 28 問</h3>
+            <p class="sub">Before You Take Your First Order</p>
+            <p class="desc">先搞懂定價邏輯、客製與尺寸溝通、售後與客訴怎麼判斷，把接單前最容易踩雷的地方，一次整理清楚。</p>
+            <div class="path-facts">
+              <span>線上錄播 · 約 1 小時</span>
+              <span>永久回看</span>
+            </div>
+            <p class="path-fit">適合：<b>還沒開始接單，或已經在做但觀念還不穩定</b>的人</p>
+            <a class="path-link" href="https://onepagestudio.github.io/28question/" target="_blank" rel="noopener">查看28問介紹 →</a>
+          </div>
+        </div>
+
+        <!-- STEP 02 -->
+        <div class="path-stop" style="--stop-color:var(--step2);">
+          <div class="path-dot"><span>02</span></div>
+          <div class="path-card">
+            <span class="path-tag">STEP 02 · 技術扎根</span>
+            <h3>穿戴甲進階班</h3>
+            <p class="sub">Advanced Press-On Nail Course</p>
+            <p class="desc">從 1:1 甲面訂製，到精緻、服貼、輕薄的完整穿戴甲製作系統。</p>
+            <div class="path-facts">
+              <span>實體課 · 台北景美捷運站</span>
+              <span>2–4 人小班</span>
+            </div>
+            <p class="path-fit">適合：<b>已有基礎，想把技術做到可以穩定接單</b>的創作者</p>
+            <a class="path-link" href="https://onepagestudio.github.io/rveaadvancedcourse/?v=3" target="_blank" rel="noopener">了解課程資訊 →</a>
+          </div>
+        </div>
+
+        <!-- STEP 03 -->
+        <div class="path-stop" style="--stop-color:var(--step3);">
+          <div class="path-dot"><span>03</span></div>
+          <div class="path-card">
+            <span class="path-tag">STEP 03 · 持續創作</span>
+            <h3>靈感研究室</h3>
+            <p class="sub">Inspiration Lab</p>
+            <p class="desc">從一直收藏參考圖，到建立自己的創作能力與設計風格——每月錄播課程、款式拆解、材料圖鑑、專題直播，陪你建立從 0 開始創作的能力。<br></p>
+            <div class="path-facts">
+              <span>訂閱制社群</span>
+              <span>月訂閱／年訂閱</span>
+            </div>
+            <p class="path-fit">適合：<b>已經會做，不知道如何自己設計款式</b>的創作者</p>
+            <a class="path-link" href="https://www.skool.com/123-9057/about" target="_blank" rel="noopener">加入靈感研究室 →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SELF CHECK ============ -->
+<section class="check" id="check">
+  <span class="watermark">START</span>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">WHERE TO START · 從哪裡開始</span>
+      <h2>不確定自己現在適合哪一站？</h2>
+      <div class="rule"></div>
+      <p class="desc">照現在的狀態，找到最適合你的起點——三個階段可以獨立開始，不一定要從頭走。</p>
+    </div>
+
+    <div class="check-grid">
+      <div class="check-card" style="--stop-color:var(--step1);">
+        <span class="q">如果你……</span>
+        <p>還沒開始接單，或不確定定價、流程、售後該怎麼安排</p>
+        <a class="go" style="color:var(--step2);" href="https://onepagestudio.github.io/28question/" target="_blank" rel="noopener">從《28 問》開始 →</a>
+      </div>
+      <div class="check-card" style="--stop-color:var(--step2);">
+        <span class="q">如果你……</span>
+        <p>已有美甲/穿戴甲基礎，想學習穿戴甲精緻、輕薄、服貼的核心技術。</p>
+        <a class="go" style="color:var(--step2);" href="https://onepagestudio.github.io/rveaadvancedcourse/?v=3" target="_blank" rel="noopener">從《穿戴甲進階班》開始 →</a>
+      </div>
+      <div class="check-card" style="--stop-color:var(--step3);">
+        <span class="q">如果你……</span>
+        <p>已經會做美甲／穿戴甲，卻還不知道怎麼自己設計款式。<br></p>
+        <a class="go" style="color:var(--step2);" href="https://www.skool.com/123-9057/about" target="_blank" rel="noopener">加入《靈感研究室》 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER / CONTACT ============ -->
+<footer id="contact">
+  <span class="watermark">RVEA</span>
+  <div class="wrap">
+    <div class="footer-inner">
+      <p class="footer-tag">Before You Take Your First Order</p>
+      <h2>先把地圖畫好，再開始上路。</h2>
+      <div class="footer-social">
+        <a class="footer-icon line-icon" href="https://line.me/R/ti/p/@998uuoof" target="_blank" rel="noopener" aria-label="LINE">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 5.79 2 10.44c0 4.16 3.54 7.64 8.32 8.31.32.07.76.21.87.49.1.25.07.65.03.9l-.14.85c-.04.25-.19.98.86.53 1.05-.44 5.68-3.35 7.75-5.73C21.09 13.86 22 12.24 22 10.44 22 5.79 17.52 2 12 2zM8.29 12.9H6.87a.3.3 0 0 1-.3-.3V8.4a.3.3 0 0 1 .3-.3h.53a.3.3 0 0 1 .3.3v3.5h.6a.3.3 0 0 1 .29.3v.4a.3.3 0 0 1-.3.3zm1.85 0h-.53a.3.3 0 0 1-.3-.3V8.4a.3.3 0 0 1 .3-.3h.53a.3.3 0 0 1 .3.3v4.2a.3.3 0 0 1-.3.3zm4.53 0h-.52a.3.3 0 0 1-.25-.13l-1.85-2.5v2.33a.3.3 0 0 1-.3.3h-.52a.3.3 0 0 1-.3-.3V8.4a.3.3 0 0 1 .3-.3h.55a.3.3 0 0 1 .24.13l1.82 2.47V8.4a.3.3 0 0 1 .3-.3h.53a.3.3 0 0 1 .3.3v4.2a.3.3 0 0 1-.3.3zm3.94-3.5h-1.75v.66h1.75a.3.3 0 0 1 .3.3v.4a.3.3 0 0 1-.3.3h-1.75v.66h1.75a.3.3 0 0 1 .3.3v.4a.3.3 0 0 1-.3.3h-2.58a.3.3 0 0 1-.3-.3V8.4a.3.3 0 0 1 .3-.3h2.58a.3.3 0 0 1 .3.3v.4a.3.3 0 0 1-.3.3z"></path></svg>
+        </a>
+        <a class="footer-icon ig-icon" href="https://www.instagram.com/rvea__official/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c2.72 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.22.6 1.77 1.16.55.55.9 1.11 1.16 1.77.25.64.42 1.37.47 2.43.05 1.06.06 1.4.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.47 2.43-.26.66-.6 1.22-1.16 1.77-.55.55-1.11.9-1.77 1.16-.64.25-1.37.42-2.43.47-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47-.66-.26-1.22-.6-1.77-1.16-.55-.55-.9-1.11-1.16-1.77-.25-.64-.42-1.37-.47-2.43C2.01 15.06 2 14.72 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.22 1.16-1.77.55-.55 1.11-.9 1.77-1.16.64-.25 1.37-.42 2.43-.47C8.94 2.01 9.28 2 12 2zm0 1.8c-2.67 0-2.99.01-4.04.06-.87.04-1.34.18-1.65.3-.42.16-.71.35-1.02.66-.31.31-.5.6-.66 1.02-.12.31-.26.78-.3 1.65C4.28 8.74 4.27 9.06 4.27 12s.01 3.26.06 4.31c.04.87.18 1.34.3 1.65.16.42.35.71.66 1.02.31.31.6.5 1.02.66.31.12.78.26 1.65.3 1.05.05 1.37.06 4.04.06s2.99-.01 4.04-.06c.87-.04 1.34-.18 1.65-.3.42-.16.71-.35 1.02-.66.31-.31.5-.6.66-1.02.12-.31.26-.78.3-1.65.05-1.05.06-1.37.06-4.31s-.01-3.26-.06-4.31c-.04-.87-.18-1.34-.3-1.65-.16-.42-.35-.71-.66-1.02-.31-.31-.6-.5-1.02-.66-.31-.12-.78-.26-1.65-.3C14.99 3.81 14.67 3.8 12 3.8zm0 3.05a5.15 5.15 0 1 1 0 10.3 5.15 5.15 0 0 1 0-10.3zm0 1.8a3.35 3.35 0 1 0 0 6.7 3.35 3.35 0 0 0 0-6.7zm5.35-2a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"></path></svg>
+        </a>
+      </div>
+      <p class="footer-meta">RVEA LEARNING PATH ｜ 不確定從哪裡開始，歡迎透過 LINE 告訴我們你目前的狀況，我們協助你判斷</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // 鎖定頁面，確保無法被編輯
+  document.designMode = "off";
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll('[contenteditable]').forEach(function(el){
+      el.setAttribute('contenteditable', 'false');
+    });
+  });
+</script>
+
+</body></html>
